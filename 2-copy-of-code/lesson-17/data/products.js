@@ -1,3 +1,6 @@
+//inheritance= lets us reuse code bw classes 
+// eg- in amazon, soo many types of products are there so every product contains similar details but some products have some unique properties like a cloth will inc size chart so just for clothing product we wont type every detaail again nd again so we use inheritance
+
 import {formatCurrency} from '../scripts/utils/money.js';
 
 export function getProduct(productId) {
@@ -40,24 +43,24 @@ class Product {
   }
 }
 
-class Clothing extends Product {
-  sizeChartLink;
+class Clothing extends Product {             // here clothing class will get all the methods and properties from Product class
+  sizeChartLink;                              // here clothing is a more specific type of product class
 
   constructor(productDetails) {
-    super(productDetails);
+    super(productDetails);                    // this (super) is used to call the constructor() thats above , so we dont have to write again the constructor code.// if we dont call instructor then automatically the parent constructor will be called
     this.sizeChartLink = productDetails.sizeChartLink;
   }
 
   extraInfoHTML() {
-    // super.extraInfoHTML();
+    // super.extraInfoHTML();     // here super will call the parent method.... above we have already mentioned extraInfoHTML... so now we are overwriting it// here clothing already got the above extraInfoHTML function but we wanted to make it different from product class.... 
     return `
-      <a href="${this.sizeChartLink}" target="_blank">
+      <a href="${this.sizeChartLink}" target="_blank">   
         Size chart
-      </a>
-    `;
+      </a>  
+    `;   // here target = _blank    it makes the link to open in a new tab
   }
 }
-
+// and in amazon.js it have a code as ${product.extraInfoHTML()}, and it can chooes which extraInfoHTML() to refer , this is known as polymorphism , polymorphish- use a method without knowing the class, and this is an alternative to ternary operator
 /*
 const date = new Date();
 console.log(date);
@@ -133,7 +136,7 @@ export const products = [
       "apparel",
       "mens"
     ],
-    type: "clothing",
+    type: "clothing",                   // this type - known as discriminator property
     sizeChartLink: "images/clothing-size-chart.png"
   },
   {
