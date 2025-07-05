@@ -1,7 +1,14 @@
+// first we copy pasted all the code from cart-oop.js
+// class = object generator
+// in class we dont need to put a comma (,) at the end of every object {} like opps
+
 class Cart {
   cartItems;
-  #localStorageKey;
-
+  #localStorageKey;  
+  //  this # will help in not letting the value of localStorageKey change , when working on a team soneone would accidently change it so .....
+  // and whenever we are using this key, we have to add # before that key as used below
+  // as we have removed the function so localStorageKey isnt a parameter anymore so now we have to set it as a variable
+// constructor lets us put this setup code inside the class// everytime we generate an object , constructor runs the setup code
   constructor(localStorageKey) {
     this.#localStorageKey = localStorageKey;
     this.#loadFromStorage();
@@ -78,9 +85,9 @@ class Cart {
   }
 }
 
-const cart = new Cart('cart-oop');
+const cart = new Cart('cart-oop');    // here cart-oop is a parameter which is connected with constructor and constructor automatically run the setup code
 const businessCart = new Cart('cart-business');
-
+// now we dont have to capy paste the same code for 2 diff carts, there is a prop (new) which generates another cart with all the properties in code above
 console.log(cart);
 console.log(businessCart);
-console.log(businessCart instanceof Cart);
+console.log(businessCart instanceof Cart);  // instance - here we are checking if buisness card is generated from cart or not // op = true
